@@ -1,8 +1,9 @@
 <template>
-  <div id="show-blogs">
+  <div v-theme:column id="show-blogs">
     <h1>All Blog Articles</h1>
-    <div v-for="blog in blogs" :key="blog.id" class="single-blog">
-      <h2>{{ blog.title }}</h2>
+    <input type="text" v-model="search" placeholder="search blogs">
+    <div v-for="blog in filteredBlogs" :key="blog.id" class="single-blog">
+      <h2 v-rainbow>{{ blog.title | to-uppercase }}</h2>
       <article>{{ blog.body }}</article>
     </div>
   </div>
@@ -12,7 +13,8 @@
 export default {
   data() {
     return {
-      blogs: []
+      blogs: [],
+      search: ""
     };
   },
   created() {
@@ -20,6 +22,13 @@ export default {
       console.log(res);
       this.blogs = res.body.slice(0, 10);
     });
+  },
+  computed: {
+    filteredBlogs() {
+      return this.blogs.filter(blog => {
+        return blog.title.includes(this.search);
+      });
+    }
   }
 };
 </script>
