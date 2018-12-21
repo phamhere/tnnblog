@@ -3,7 +3,9 @@
     <h1>All Blog Articles</h1>
     <input type="text" v-model="search" placeholder="search blogs">
     <div v-for="blog in filteredBlogs" :key="blog.id" class="single-blog">
-      <h2 v-rainbow>{{ blog.title | to-uppercase }}</h2>
+      <router-link :to="`/blog/${blog.id}`">
+        <h2 v-rainbow>{{ blog.title | to-uppercase }}</h2>
+      </router-link>
       <article>{{ blog.body }}</article>
     </div>
   </div>
@@ -21,7 +23,6 @@ export default {
   },
   created() {
     this.$http.get("https://jsonplaceholder.typicode.com/posts").then(res => {
-      console.log(res);
       this.blogs = res.body.slice(0, 10);
     });
   },

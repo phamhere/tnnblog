@@ -6,9 +6,6 @@
 </template>
 
 <script>
-import addBlog from "./components/addBlog";
-import showBlogs from "./components/showBlogs";
-import listBlogs from "./components/listBlogs";
 import header from "./components/header";
 
 export default {
@@ -16,9 +13,6 @@ export default {
     return {};
   },
   components: {
-    "add-blog": addBlog,
-    "show-blogs": showBlogs,
-    "list-blogs": listBlogs,
     "app-header": header
   }
 };

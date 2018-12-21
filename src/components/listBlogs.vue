@@ -20,7 +20,6 @@ export default {
   },
   created() {
     this.$http.get("https://jsonplaceholder.typicode.com/posts").then(res => {
-      console.log(res);
       this.blogs = res.body.slice(0, 10);
     });
   },
